@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Surveillance Using Raspberry Pi | Interactive Learning Lab</title>
+<style>
+:root{--bg:#f4f7fb;--panel:#fff;--ink:#15243a;--muted:#5d6b80;--line:#dbe4ef;--brand:#1769aa;--brand2:#0e8a83;--soft:#e8f3ff;--good:#e5f7ed;--bad:#fff0ee;--shadow:0 10px 28px rgba(24,48,80,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}header{background:linear-gradient(125deg,#10233f,#1769aa 65%,#0e8a83);color:white;padding:42px 20px 34px}.wrap{max-width:1120px;margin:auto;padding:0 20px}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.78rem;font-weight:800;opacity:.85}.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:center}h1{font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.08;margin:.4rem 0 1rem}header p{max-width:720px;color:#e5f1ff}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.chip{border:1px solid #ffffff66;border-radius:99px;padding:5px 11px;font-size:.84rem}.hero-art{background:#ffffff12;border:1px solid #ffffff3d;border-radius:22px;padding:18px}.hero-art svg{width:100%;height:auto;display:block}nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 10px #172b4510}.navinner{max-width:1120px;margin:auto;display:flex;gap:5px;overflow:auto;padding:9px 20px}nav a{white-space:nowrap;text-decoration:none;color:#32445d;padding:8px 11px;border-radius:9px;font-size:.9rem}nav a:hover{background:var(--soft);color:var(--brand)}main{max-width:1120px;margin:24px auto;padding:0 20px}.section{scroll-margin-top:76px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);box-shadow:var(--shadow)}h2{margin:0 0 12px;font-size:1.65rem;line-height:1.25}h3{margin:1.2rem 0 .35rem;font-size:1.1rem}p{margin:.55rem 0}.muted,.small{color:var(--muted)}.small{font-size:.9rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.card h3{margin-top:0}.callout{padding:14px 16px;background:var(--soft);border-left:4px solid var(--brand);border-radius:8px;margin:14px 0}.warning{background:#fff7e6;border-left-color:#d58a00}.good{background:var(--good);border-left-color:#18834c}ul,ol{padding-left:1.3rem}li{margin:.28rem 0}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}th{background:#edf4fb}code,.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef3f8;border-radius:5px;padding:2px 5px}.diagram{background:#f8fbff;border:1px solid var(--line);border-radius:14px;padding:12px;overflow:auto}.diagram svg{min-width:550px;width:100%;height:auto;display:block}.btn{border:0;border-radius:9px;background:var(--brand);color:white;font:inherit;font-weight:700;padding:10px 15px;cursor:pointer}.btn.secondary{background:#e8eef5;color:#20334d}.btn:hover{filter:brightness(.96)}.quizq{border:1px solid var(--line);border-radius:12px;padding:15px;margin:13px 0}.quizq legend{font-weight:750;padding:0 4px}.option{display:block;padding:6px 8px;border-radius:7px;cursor:pointer}.option:hover{background:#f2f7fc}.feedback{display:none;margin-top:9px;padding:10px;border-radius:8px}.feedback.show{display:block}.correct{background:var(--good)}.incorrect{background:var(--bad)}details{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:9px 0}summary{cursor:pointer;font-weight:700}input[type=radio]{margin-right:8px}footer{padding:28px 20px;text-align:center;color:var(--muted)}.pill{display:inline-block;border-radius:99px;background:#e9f5f4;color:#086d68;padding:3px 9px;font-size:.8rem;font-weight:800}.steps{counter-reset:step}.step{position:relative;padding:0 0 16px 42px}.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:800}.score{font-size:1.2rem;font-weight:800;margin:12px 0}
+@media(max-width:760px){.hero-grid,.grid,.grid3{grid-template-columns:1fr}.hero-art{max-width:520px}.wrap,main{padding-left:13px;padding-right:13px}.section{padding:18px}header{padding-top:30px}table{font-size:.86rem}th,td{padding:7px}}
+@media print{body{background:#fff;font-size:11pt}header{background:#fff!important;color:#111;padding:20px 0;border-bottom:2px solid #222}header p{color:#222}.hero-art,nav,.btn{display:none!important}main{max-width:none;padding:0}.section{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:12px 0;padding:16px}details{break-inside:avoid}a{color:#111;text-decoration:none}.feedback{display:block!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap hero-grid">
+  <div>
+   <div class="eyebrow">Embedded Systems • IoT • Computer Vision</div>
+   <h1>Video Surveillance Using Raspberry Pi</h1>
+   <p>Learn how a compact single-board computer captures video, detects activity, stores evidence and provides secure remote monitoring. Includes architecture, design considerations, setup workflow, interview prep and interactive quizzes.</p>
+   <div class="chips"><span class="chip">B.E./B.Tech ECE & CSE</span><span class="chip">Hands-on learning</span><span class="chip">Offline-friendly guide</span></div>
+  </div>
+  <div class="hero-art">
+   <svg viewBox="0 0 420 250" role="img" aria-label="Illustration of camera connected to Raspberry Pi and monitor">
+    <rect x="14" y="18" width="392" height="214" rx="16" fill="#ffffff" opacity=".10"/>
+    <rect x="38" y="70" width="92" height="72" rx="10" fill="#dcecff" stroke="#fff" stroke-width="2"/>
+    <circle cx="83" cy="106" r="25" fill="#1769aa" stroke="#fff" stroke-width="3"/><circle cx="83" cy="106" r="14" fill="#10233f"/><circle cx="77" cy="100" r="5" fill="#9ce6ff"/>
+    <path d="M130 105 H180" stroke="#fff" stroke-width="3" stroke-dasharray="5 5"/><path d="M171 97 L181 105 L171 113" fill="none" stroke="#fff" stroke-width="3"/>
+    <rect x="184" y="66" width="112" height="83" rx="8" fill="#208f80" stroke="#fff" stroke-width="2"/>
+    <rect x="196" y="78" width="33" height="27" rx="3" fill="#123e55"/><rect x="238" y="78" width="45" height="7" rx="3" fill="#bceee5"/><rect x="238" y="91" width="33" height="7" rx="3" fill="#bceee5"/><rect x="198" y="116" width="82" height="20" rx="3" fill="#123e55"/>
+    <path d="M296 106 H332" stroke="#fff" stroke-width="3" stroke-dasharray="5 5"/><path d="M323 98 L333 106 L323 114" fill="none" stroke="#fff" stroke-width="3"/>
+    <rect x="334" y="67" width="52" height="70" rx="5" fill="#dcecff" stroke="#fff" stroke-width="2"/><rect x="341" y="74" width="38" height="48" rx="2" fill="#10233f"/><path d="M346 109 L354 99 L361 104 L373 88" fill="none" stroke="#65d6b7" stroke-width="3"/><path d="M351 139 V150 M342 150 H360" stroke="#fff" stroke-width="3"/>
+    <text x="84" y="164" text-anchor="middle" fill="#fff" font-size="12">Camera</text><text x="240" y="165" text-anchor="middle" fill="#fff" font-size="12">Raspberry Pi</text><text x="360" y="166" text-anchor="middle" fill="#fff" font-size="12">Monitor</text>
+    <text x="210" y="205" text-anchor="middle" fill="#e5f1ff" font-size="13">Capture → Process → Store / Stream</text>
+   </svg>
+  </div>
+ </div>
+</header>
+<nav><div class="navinner">
+<a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#working">Working</a><a href="#build">Build guide</a><a href="#design">Design & testing</a><a href="#applications">Applications</a><a href="#gate">GATE-style practice</a><a href="#interview">Interview Q&A</a><a href="#quiz">10-question quiz</a><a href="#revision">Revision</a>
+</div></nav>
+<main>
+<section class="section" id="overview">
+<h2>1. Introduction and learning objectives</h2>
+<p><b>Video surveillance using Raspberry Pi</b> is a compact monitoring system in which a Raspberry Pi computer receives video from a camera module or compatible USB webcam, processes or records the stream, and optionally makes it available to an authorized viewer over a network.</p>
+<div class="callout"><b>Core idea:</b> camera captures frames; the Pi runs software to preview, record, detect motion or analyze images; storage and networking support review and remote access.</div>
+<div class="grid">
+ <div class="card"><h3>Learning objectives</h3><ul><li>Identify the hardware and software blocks.</li><li>Trace the video data path from camera to storage or viewer.</li><li>Plan capture, motion detection, recording and network access.</li><li>Evaluate frame rate, resolution, storage, power and privacy.</li><li>Test and troubleshoot a small surveillance prototype.</li></ul></div>
+ <div class="card"><h3>Prerequisites</h3><ul><li>Basic computer and operating-system concepts.</li><li>Digital images as arrays of pixels and video as a sequence of frames.</li><li>Basic networking: IP address, Wi-Fi/Ethernet and authentication.</li><li>Python basics are useful for scripting and image processing.</li></ul></div>
+</div>
+<h3>Important terminology</h3>
+<table><tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Frame</td><td>A single image captured at one instant.</td></tr><tr><td>FPS</td><td>Frames per second; a measure of temporal smoothness.</td></tr><tr><td>Resolution</td><td>Image width × height in pixels, e.g. 1280 × 720.</td></tr><tr><td>Motion detection</td><td>Identifying meaningful changes between frames or regions.</td></tr><tr><td>Codec</td><td>Method used to encode/decode video, often to reduce file size.</td></tr><tr><td>Latency</td><td>Delay from capture to display or notification.</td></tr><tr><td>Edge processing</td><td>Processing data locally on the Pi rather than sending all raw data to a cloud server.</td></tr></table>
+</section>
+
+<section class="section" id="architecture">
+<h2>2. System architecture and hardware</h2>
+<p>The design can be as simple as local recording or extended with motion-triggered clips, notifications, multiple cameras or secure remote viewing.</p>
+<div class="diagram">
+<svg viewBox="0 0 900 300" role="img" aria-label="Raspberry Pi surveillance system block diagram">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1769aa"/></marker></defs>
+<rect x="20" y="76" width="145" height="92" rx="12" fill="#e8f3ff" stroke="#1769aa" stroke-width="2"/><text x="92" y="111" text-anchor="middle" font-size="16" font-weight="bold" fill="#15243a">Camera</text><text x="92" y="135" text-anchor="middle" font-size="12" fill="#32445d">CSI / USB</text>
+<path d="M165 122 H220" stroke="#1769aa" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="225" y="54" width="225" height="137" rx="12" fill="#e4f6f2" stroke="#0e8a83" stroke-width="2"/><text x="337" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#15243a">Raspberry Pi</text><text x="337" y="108" text-anchor="middle" font-size="13" fill="#32445d">Capture • Encode</text><text x="337" y="129" text-anchor="middle" font-size="13" fill="#32445d">Motion / AI analysis</text><text x="337" y="150" text-anchor="middle" font-size="13" fill="#32445d">Application logic</text><text x="337" y="174" text-anchor="middle" font-size="11" fill="#5d6b80">CPU • RAM • GPIO • OS</text>
+<path d="M450 96 H500" stroke="#1769aa" stroke-width="3" marker-end="url(#arrow)"/><rect x="505" y="48" width="165" height="72" rx="10" fill="#fff7e6" stroke="#d58a00" stroke-width="2"/><text x="587" y="77" text-anchor="middle" font-size="15" font-weight="bold" fill="#15243a">Storage</text><text x="587" y="99" text-anchor="middle" font-size="12" fill="#32445d">microSD / SSD / NAS</text>
+<path d="M450 151 H500" stroke="#1769aa" stroke-width="3" marker-end="url(#arrow)"/><rect x="505" y="135" width="165" height="72" rx="10" fill="#f0eaff" stroke="#7962bd" stroke-width="2"/><text x="587" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#15243a">Network</text><text x="587" y="186" text-anchor="middle" font-size="12" fill="#32445d">Ethernet / Wi-Fi</text>
+<path d="M670 171 H715" stroke="#1769aa" stroke-width="3" marker-end="url(#arrow)"/><rect x="720" y="135" width="160" height="72" rx="10" fill="#e8f3ff" stroke="#1769aa" stroke-width="2"/><text x="800" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#15243a">Authorized viewer</text><text x="800" y="186" text-anchor="middle" font-size="12" fill="#32445d">Phone / PC / NVR</text>
+<path d="M337 191 V239 H587 V211" stroke="#5d6b80" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#arrow)"/><text x="450" y="261" text-anchor="middle" font-size="12" fill="#5d6b80">Power supply and thermal management support reliable operation</text>
+</svg>
+</div>
+<table><tr><th>Component</th><th>Role</th><th>Design note</th></tr>
+<tr><td>Raspberry Pi board</td><td>Runs the OS, capture pipeline and application.</td><td>Choose a model with sufficient processing and memory for the target stream.</td></tr>
+<tr><td>Camera module / USB webcam</td><td>Captures light and outputs image frames.</td><td>Check interface, driver support, lens, low-light performance and supported modes.</td></tr>
+<tr><td>microSD / SSD / NAS</td><td>Stores clips and configuration.</td><td>Consider write endurance, capacity and backup strategy.</td></tr>
+<tr><td>Network link</td><td>Provides viewing, time sync and notifications.</td><td>Prefer wired Ethernet for stable links where practical; secure access.</td></tr>
+<tr><td>Power and enclosure</td><td>Supplies stable power and protects hardware.</td><td>Use a suitable regulated supply; manage heat, dust and weather exposure.</td></tr>
+</table>
+<div class="callout warning"><b>Compatibility note:</b> camera interfaces, OS images, and capture commands vary by Raspberry Pi model and software release. Verify the camera is detected using the tools documented for the installed OS; do not assume every older tutorial command works on every current system.</div>
+</section>
+
+<section class="section" id="working">
+<h2>3. Working principle: step by step</h2>
+<div class="steps">
+<div class="step"><b>Capture:</b> The image sensor converts incoming light into pixel data. The camera interface transfers frames to the Pi.</div>
+<div class="step"><b>Acquire and encode:</b> Capture software configures resolution and frame rate. Frames may be encoded into a compressed format to reduce storage and bandwidth.</div>
+<div class="step"><b>Analyze:</b> Optional logic compares frames, checks regions of interest or runs an object-detection model. Motion detection alone does not identify a person or determine intent.</div>
+<div class="step"><b>Record:</b> The system writes continuous footage or event-triggered clips to local or network storage. A short pre-event buffer can preserve what happened just before a trigger.</div>
+<div class="step"><b>Notify / view:</b> An authenticated client can view a stream or receive an alert, depending on the chosen software architecture.</div>
+<div class="step"><b>Maintain:</b> Rotate old files, monitor disk space, verify timestamps and logs, apply security updates, and test recovery after power loss.</div>
+</div>
+<h3>Continuous vs motion-triggered recording</h3>
+<table><tr><th>Mode</th><th>Benefits</th><th>Trade-offs</th></tr><tr><td>Continuous</td><td>Complete timeline; fewer missed events due to trigger logic.</td><td>Higher storage and sustained write workload.</td></tr><tr><td>Motion-triggered</td><td>Uses less storage when the scene is mostly static.</td><td>May miss subtle events or trigger on shadows, rain, insects or lighting changes.</td></tr><tr><td>Hybrid</td><td>Low-rate/continuous capture plus high-quality event clips.</td><td>More configuration and testing complexity.</td></tr></table>
+<h3>Illustrative capture pipeline</h3>
+<div class="diagram"><svg viewBox="0 0 850 160" role="img" aria-label="Capture pipeline"><defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#1769aa"/></marker></defs>
+<g font-size="14" text-anchor="middle" fill="#15243a"><rect x="10" y="35" width="135" height="70" rx="10" fill="#e8f3ff" stroke="#1769aa"/><text x="77" y="64">Image sensor</text><text x="77" y="84" font-size="11">pixels / frames</text><rect x="180" y="35" width="135" height="70" rx="10" fill="#e4f6f2" stroke="#0e8a83"/><text x="247" y="64">Capture API</text><text x="247" y="84" font-size="11">resolution / FPS</text><rect x="350" y="35" width="135" height="70" rx="10" fill="#f0eaff" stroke="#7962bd"/><text x="417" y="64">Processing</text><text x="417" y="84" font-size="11">optional analytics</text><rect x="520" y="35" width="135" height="70" rx="10" fill="#fff7e6" stroke="#d58a00"/><text x="587" y="64">Encoder</text><text x="587" y="84" font-size="11">compression</text><rect x="690" y="35" width="145" height="70" rx="10" fill="#e8f3ff" stroke="#1769aa"/><text x="762" y="64">File / stream</text><text x="762" y="84" font-size="11">store / deliver</text></g><g stroke="#1769aa" stroke-width="2.5" marker-end="url(#a2)"><path d="M145 70 H177"/><path d="M315 70 H347"/><path d="M485 70 H517"/><path d="M655 70 H687"/></g><text x="425" y="135" text-anchor="middle" font-size="12" fill="#5d6b80">Illustrative logical flow; exact APIs and codec depend on implementation.</text></svg></div>
+</section>
+
+<section class="section" id="build">
+<h2>4. Practical build and setup guide</h2>
+<p>This is a platform-neutral workflow rather than a promise that one command fits every model and OS image.</p>
+<div class="grid">
+<div class="card"><h3>Hardware checklist</h3><ul><li>Raspberry Pi board and compatible regulated power supply.</li><li>Compatible camera module or USB webcam.</li><li>microSD card or suitable SSD, with free capacity planned.</li><li>Network connection for remote viewing if needed.</li><li>Case, mounting bracket and cooling appropriate to workload.</li></ul></div>
+<div class="card"><h3>Software checklist</h3><ul><li>Supported Raspberry Pi OS or another compatible OS.</li><li>Camera capture utility/API supported by the installed release.</li><li>Recording or streaming software.</li><li>Optional Python/OpenCV or a supported inference runtime.</li><li>Authentication, updates, logs and storage-rotation policy.</li></ul></div>
+</div>
+<h3>Implementation sequence</h3>
+<ol><li>Install a supported OS image and update packages.</li><li>Connect the camera with power disconnected where the interface requires it; follow the board's safe connection procedure.</li><li>Check camera detection and capture a short test image/video using the OS's supported camera tools.</li><li>Set resolution, frame rate, exposure and output format based on the actual camera's capabilities.</li><li>Record a short clip, then verify playback, duration, file size and timestamps.</li><li>Add motion detection or analytics only after reliable baseline capture works.</li><li>Configure storage limits, automatic startup, logs and recovery behaviour.</li><li>Enable remote access only through a secure, authenticated method; test from an authorized client.</li><li>Run an endurance test and inspect temperature, dropped frames, disk use and network stability.</li></ol>
+<div class="callout good"><b>Engineering habit:</b> first establish a reliable camera-to-file path. Add streaming, analytics and alerts one at a time so faults can be isolated.</div>
+<h3>Optional Python/OpenCV motion-detection concept</h3>
+<pre style="white-space:pre-wrap;background:#101f33;color:#eaf3ff;padding:16px;border-radius:12px;overflow:auto"><code># Conceptual example: frame-difference motion detection
+# Install and camera backend setup depend on your OS and camera.
+import cv2
+
+cap = cv2.VideoCapture(0)  # 0 is commonly the first USB camera
+ok, previous = cap.read()
+if not ok:
+    raise RuntimeError("Camera frame could not be read")
+
+previous_gray = cv2.cvtColor(previous, cv2.COLOR_BGR2GRAY)
+previous_gray = cv2.GaussianBlur(previous_gray, (21, 21), 0)
+
+while True:
+    ok, frame = cap.read()
+    if not ok:
+        break
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray = cv2.GaussianBlur(gray, (21, 21), 0)
+    delta = cv2.absdiff(previous_gray, gray)
+    _, mask = cv2.threshold(delta, 25, 255, cv2.THRESH_BINARY)
+    changed_pixels = cv2.countNonZero(mask)
+    motion = changed_pixels > 5000  # tune for scene/resolution
+    cv2.putText(frame, "MOTION" if motion else "QUIET",
+                (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                (0, 0, 255) if motion else (0, 255, 0), 2)
+    cv2.imshow("Surveillance preview", frame)
+    previous_gray = gray
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()</code></pre>
+<p class="small">This example illustrates frame differencing only. It does not record clips, authenticate viewers, identify objects or guarantee reliable alarms. Some CSI camera configurations are not exposed as a generic OpenCV device index; use a compatible camera backend or capture pipeline.</p>
+</section>
+
+<section class="section" id="design">
+<h2>5. Design calculations, testing and troubleshooting</h2>
+<h3>Storage estimation</h3>
+<p>For a compressed stream with average bitrate \(R\) bits/s and recording duration \(t\) seconds:</p>
+<div class="callout"><b>Approximate storage:</b> \(S = \dfrac{R\,t}{8}\) bytes. For decimal units, \(S_{GB} \approx \dfrac{R_{Mbps}\times t_{seconds}}{8\times1000}\).</div>
+<p><b>Example:</b> A stream averaging 2 Mb/s recorded for 24 hours:</p>
+<ul><li>Seconds per day = 24 × 60 × 60 = 86,400 s.</li><li>Data = 2 × 86,400 ÷ 8 = 21,600 MB ≈ <b>21.6 GB/day</b> (decimal, before filesystem overhead).</li><li>Seven days ≈ 151.2 GB. Leave extra capacity for bitrate variation, metadata and operational headroom.</li></ul>
+<h3>Frame-rate and bandwidth considerations</h3>
+<p>Higher resolution and frame rate can improve detail and motion continuity, but increase compute load, network traffic and storage. Actual compressed bitrate depends on codec, scene complexity, quality settings and motion; pixel count alone cannot determine file size.</p>
+<table><tr><th>Symptom</th><th>Likely causes</th><th>Checks / action</th></tr>
+<tr><td>No camera detected</td><td>Loose connector, unsupported camera, interface/configuration mismatch.</td><td>Check cable orientation, connector seating, OS support and camera detection tools.</td></tr>
+<tr><td>Choppy video</td><td>CPU overload, insufficient bandwidth, slow storage, unsuitable settings.</td><td>Reduce resolution/FPS, inspect CPU and network, test storage throughput.</td></tr>
+<tr><td>False motion alerts</td><td>Shadows, exposure shifts, moving foliage or noise.</td><td>Use regions of interest, blur/noise filtering, thresholds and debounce time.</td></tr>
+<tr><td>Disk fills up</td><td>No retention policy or unexpectedly high bitrate.</td><td>Estimate storage, rotate files, set quotas and alert on low space.</td></tr>
+<tr><td>Overheating / reboot</td><td>High sustained load, inadequate cooling, unstable power.</td><td>Check supply rating, cable, temperature, cooling and system logs.</td></tr>
+<tr><td>Remote viewing exposed</td><td>Default credentials, unencrypted service, unnecessary port forwarding.</td><td>Change credentials, update software, restrict access and use a VPN or trusted secure access method.</td></tr></table>
+<h3>Test plan</h3>
+<ul><li><b>Functional:</b> camera detected, clip saved and playback verified.</li><li><b>Performance:</b> measure observed FPS, latency, dropped frames and CPU load.</li><li><b>Storage:</b> verify file rotation and behaviour when disk space is low.</li><li><b>Reliability:</b> run for an extended period and test restart after power interruption.</li><li><b>Security:</b> verify authentication, access permissions, updates and network exposure.</li><li><b>Privacy:</b> confirm recording is lawful, disclosed where required and limited to appropriate areas.</li></ul>
+</section>
+
+<section class="section" id="applications">
+<h2>6. Applications, advantages and limitations</h2>
+<div class="grid3">
+<div class="card"><h3>Home / small office</h3><p>Local recording, entry monitoring and authorized remote checks.</p></div>
+<div class="card"><h3>Labs / classrooms</h3><p>Equipment monitoring and time-limited observation with appropriate consent.</p></div>
+<div class="card"><h3>Industrial prototypes</h3><p>Visual inspection, machine-state observation and event logging.</p></div>
+</div>
+<div class="grid">
+<div class="card"><h3>Advantages</h3><ul><li>Low-cost, compact and flexible platform.</li><li>Programmable capture and event workflows.</li><li>Can process data locally to reduce cloud dependence.</li><li>Supports learning in Linux, Python, networking and computer vision.</li></ul></div>
+<div class="card"><h3>Limitations</h3><ul><li>Processing capability is limited compared with dedicated NVRs/servers.</li><li>Low-light image quality depends heavily on the camera and lighting.</li><li>SD-card wear, power interruptions and heat can affect reliability.</li><li>Motion detection may produce false positives/negatives.</li><li>Network streaming adds bandwidth and security requirements.</li></ul></div>
+</div>
+<h3>Industry and career relevance</h3>
+<p>This project connects embedded Linux, camera interfaces, IoT networking, software testing, computer vision and system reliability. Relevant roles include embedded systems engineer, IoT developer, computer-vision engineer, hardware validation engineer and test automation engineer.</p>
+<div class="callout warning"><b>Privacy and safety:</b> record only where you have authorization. Use strong unique credentials, keep the OS updated, restrict network access, encrypt sensitive recordings where feasible and define a retention/deletion policy. Do not expose an unauthenticated camera stream directly to the public internet.</div>
+</section>
+
+<section class="section" id="gate">
+<h2>7. GATE-style practice questions</h2>
+<p class="muted">These are original practice questions for revision, not actual previous-year GATE questions. Select an answer to reveal the key and explanation.</p>
+<div id="gateQuestions"></div>
+<button class="btn secondary" onclick="revealGate()">Reveal all answers</button>
+</section>
+
+<section class="section" id="interview">
+<h2>8. Core electronics / embedded interview questions</h2>
+<p>Expand each question to review a concise interview-ready answer.</p>
+<details><summary>1. What is the role of Raspberry Pi in a surveillance system?</summary><p>It is the edge computer: it configures capture, processes frames, encodes or records video, runs event logic and can provide a network interface for authorized viewing.</p></details>
+<details><summary>2. What is the difference between a camera module and a USB webcam?</summary><p>A camera module may connect through a board-specific camera interface and use a dedicated capture stack; a USB webcam uses USB and typically exposes a supported video device. Compatibility depends on hardware, drivers and OS.</p></details>
+<details><summary>3. How do resolution and FPS affect system load?</summary><p>More pixels per frame and more frames per second generally increase capture, processing and transfer workload. Compression and hardware support influence the actual bitrate and CPU demand.</p></details>
+<details><summary>4. Explain frame-difference motion detection.</summary><p>Convert successive frames to a comparable representation, compute their absolute difference, threshold changed pixels and trigger when a tuned region/count threshold is exceeded. Lighting changes can cause false triggers.</p></details>
+<details><summary>5. How would you estimate required storage?</summary><p>Use average encoded bitrate × duration ÷ 8 to convert bits to bytes, then add headroom for variable bitrate, metadata and retention. Validate with real recordings.</p></details>
+<details><summary>6. Why might video stutter?</summary><p>Possible causes include high CPU usage, poor network throughput, slow storage, buffer underruns, unsupported capture modes or thermal throttling. Measure each layer rather than guessing.</p></details>
+<details><summary>7. How would you make the system more secure?</summary><p>Use unique credentials, least-privilege accounts, regular updates, encrypted remote access, firewall restrictions, no unnecessary port forwarding and a clear retention policy.</p></details>
+<details><summary>8. What is the difference between motion detection and object detection?</summary><p>Motion detection identifies changes in a scene. Object detection runs a trained model to classify and localize categories such as person or vehicle; it needs more compute and can still make mistakes.</p></details>
+<details><summary>9. What tests would you run before deployment?</summary><p>Check camera detection, clip integrity, FPS and latency, storage rotation, long-duration stability, recovery after restart, low-space handling, network loss and access controls.</p></details>
+<details><summary>10. What happens if the network goes down?</summary><p>If recording is local and correctly configured, local capture may continue while remote viewing/alerts fail. Confirm this through testing and design a queue/retry policy for notifications.</p></details>
+<details><summary>11. Why is power quality important?</summary><p>Undervoltage or unstable supply can cause camera errors, storage corruption, throttling or unexpected restarts. Use a supply suitable for the exact board and attached peripherals.</p></details>
+<details><summary>12. How would you reduce false alarms?</summary><p>Mask irrelevant regions, stabilize exposure, filter noise, use hysteresis/debounce timing and evaluate thresholds on representative day/night footage. For semantic alerts, consider a validated object detector.</p></details>
+</section>
+
+<section class="section" id="quiz">
+<h2>9. Interactive topic quiz (10 questions)</h2>
+<p>Choose one option for each question, then select <b>Check answers</b>. Unanswered items are counted separately and receive an explanation.</p>
+<div id="topicQuiz"></div>
+<button class="btn" onclick="gradeQuiz()">Check answers</button> <button class="btn secondary" onclick="resetQuiz()">Reset quiz</button>
+<div id="quizResult" class="score" aria-live="polite"></div>
+</section>
+
+<section class="section" id="revision">
+<h2>10. Quick revision sheet</h2>
+<h3>Formula and design checklist</h3>
+<table><tr><th>Quantity</th><th>Relationship</th><th>Use / caution</th></tr>
+<tr><td>Storage (bytes)</td><td><span class="formula">S ≈ bitrate (bit/s) × duration (s) / 8</span></td><td>Use average encoded bitrate; add headroom.</td></tr>
+<tr><td>Decimal storage (GB)</td><td><span class="formula">S ≈ R(Mb/s) × t(s) / 8000</span></td><td>GB uses 10⁹ bytes; GiB uses 2³⁰ bytes.</td></tr>
+<tr><td>Frame interval</td><td><span class="formula">Δt = 1 / FPS</span></td><td>At 25 FPS, nominal interval is 0.04 s.</td></tr>
+<tr><td>Uncompressed frame size</td><td><span class="formula">width × height × bits/pixel / 8</span></td><td>Excludes headers and buffering; actual formats may use chroma subsampling.</td></tr></table>
+<h3>High-priority concepts</h3>
+<ul><li>Know the capture → processing → encoding → storage/streaming pipeline.</li><li>Differentiate camera interface, capture API, codec, transport and storage.</li><li>Estimate disk usage from measured bitrate and retention duration.</li><li>Motion detection is not equivalent to identifying an object or person.</li><li>Reliability includes power, heat, storage endurance, restart behaviour and logs.</li><li>Security and privacy are core requirements, not optional add-ons.</li></ul>
+<h3>Common misconceptions</h3>
+<ul><li>Higher resolution does not automatically mean better usable surveillance if lighting, lens or bitrate is poor.</li><li>Wi-Fi connectivity alone does not make a system secure.</li><li>A motion alarm can trigger on environmental changes, not only people.</li><li>Maximum advertised camera FPS may not be sustainable at every resolution and encoding mode.</li><li>Local recording can continue during network loss only if the design and software support it.</li></ul>
+<div class="callout"><b>One-line summary:</b> a good Raspberry Pi surveillance design balances image quality, frame rate, storage, compute, reliable power, secure access and responsible data handling.</div>
+</section>
+</main>
+<footer><p>Interactive Embedded Systems Learning Lab • Video Surveillance Using Raspberry Pi</p><p class="small">Diagrams are illustrative. Hardware compatibility and performance should be verified on the exact board, camera, OS and software version.</p><button class="btn secondary" onclick="window.print()">Print / Save as PDF</button></footer>
+<script>
+const gateData=[
+{q:"A camera stream averages 1.5 Mb/s. Approximately how much decimal storage is required for 2 hours?",o:["0.135 GB","1.35 GB","13.5 GB","135 GB"],a:1,d:"Storage ≈ R × t / 8. Here 1.5 Mb/s × 7200 s ÷ 8 = 1350 MB ≈ 1.35 GB, ignoring overhead." ,level:"Moderate"},
+{q:"Which block primarily converts captured frames into a smaller encoded bitstream?",o:["Power supply","Video encoder","Lens mount","GPIO header"],a:1,d:"A video encoder compresses frames into a coded representation. The exact codec and hardware/software path depend on the platform.",level:"Easy"},
+{q:"At 20 frames per second, the nominal interval between frames is:",o:["5 ms","20 ms","50 ms","200 ms"],a:2,d:"Δt = 1/FPS = 1/20 s = 0.05 s = 50 ms.",level:"Easy"},
+{q:"A frame-difference motion detector triggers whenever many pixels change. Which is a likely false-trigger cause?",o:["A stable scene","A sudden lighting change","A full storage drive only","A valid login"],a:1,d:"Exposure shifts, shadows and lighting changes can alter many pixels even when no relevant object enters the scene.",level:"Easy"},
+{q:"What is the most appropriate first step when no video is captured?",o:["Immediately train an AI model","Verify camera connection, compatibility and detection","Expose the stream to the internet","Increase storage capacity"],a:1,d:"Confirm the physical connection, supported interface and OS-level camera detection before debugging higher-level software.",level:"Easy"},
+{q:"Which statement about motion detection is correct?",o:["It always identifies people","It guarantees no missed events","It detects changes, which may include irrelevant scene changes","It replaces authentication"],a:2,d:"Basic motion detection detects changes in image data; it does not inherently classify the cause or identity.",level:"Moderate"},
+{q:"A 2 Mb/s stream runs continuously for 24 hours. Approximate decimal storage is:",o:["2.16 GB","21.6 GB","216 GB","1.73 GB"],a:1,d:"2 × 86,400 ÷ 8 = 21,600 MB ≈ 21.6 GB per day, before overhead.",level:"Moderate"},
+{q:"Which design choice best protects remote access?",o:["Keep default password","Disable updates","Use strong credentials and encrypted restricted access","Open every port on the router"],a:2,d:"Strong unique credentials, updates, least privilege and encrypted access reduce exposure. Avoid unnecessary public port forwarding.",level:"Easy"},
+{q:"Remote viewing stops during a network outage, but local recording continues. What does this imply?",o:["Local recording is independent of the network path","The camera has no sensor","The storage must be cloud-only","Motion detection is impossible"],a:0,d:"A local capture-to-storage path can continue without the network, while remote access and alerts may be unavailable.",level:"Moderate"},
+{q:"For reliable long-duration deployment, which test set is most complete?",o:["Only check the first image","Only measure Wi-Fi signal","Test FPS, storage rotation, thermal behaviour, restart recovery and access controls","Only change camera colour"],a:2,d:"Endurance validation should cover performance, storage, heat, recovery and security—not just initial capture.",level:"Difficult"}
+];
+const quizData=[
+{q:"What is the Raspberry Pi's main role in this system?",o:["Only a passive lens","Edge computer for capture, processing and control","A camera sensor itself","A network cable"],a:1,d:"The Pi runs the OS and software that coordinates capture, processing, recording and access."},
+{q:"What does FPS stand for?",o:["Files per storage","Frames per second","Focus processing system","Frequency per sensor"],a:1,d:"FPS measures the number of video frames captured or displayed each second."},
+{q:"Which is an example of local storage?",o:["microSD card","Wi-Fi signal","Camera lens","IP address"],a:0,d:"A microSD card or SSD can store recordings locally."},
+{q:"What is the approximate storage for a 1 Mb/s stream over 1 hour?",o:["45 MB","450 MB","4.5 GB","45 GB"],a:1,d:"1 × 3600 ÷ 8 = 450 MB in decimal units, ignoring overhead."},
+{q:"Which factor can cause false motion alarms?",o:["Lighting changes","Correct timestamps","A strong password","File rotation"],a:0,d:"Lighting shifts, shadows and moving foliage can create pixel changes that look like motion."},
+{q:"Why encode/compress video?",o:["To increase lens size","To reduce storage and transmission data","To remove the need for a camera","To guarantee perfect image quality"],a:1,d:"Compression reduces the number of bits needed to store or transmit video, with quality/compute trade-offs."},
+{q:"What should be done before adding AI analytics?",o:["Ensure basic capture and recording work reliably","Disable all logs","Remove storage","Open public network access"],a:0,d:"A reliable baseline pipeline makes later failures easier to isolate."},
+{q:"Which is a good security practice?",o:["Use default credentials forever","Keep software unpatched","Restrict access and use strong credentials","Publish the camera password"],a:2,d:"Access should be authenticated, restricted and maintained with security updates."},
+{q:"What does latency mean?",o:["Image width","Delay from capture to display/notification","Number of GPIO pins","Storage capacity"],a:1,d:"Latency is the time delay through capture, processing, transport and display."},
+{q:"Which is a limitation of simple motion detection?",o:["It always understands intent","It may miss subtle motion or trigger on shadows","It needs no image frames","It replaces video storage"],a:1,d:"Threshold-based detection is sensitive to scene conditions and cannot infer meaning by itself."}
+];
+function renderQuestions(data,containerId,prefix,withDifficulty=false){
+ const el=document.getElementById(containerId);
+ el.innerHTML=data.map((item,i)=>`<fieldset class="quizq" id="${prefix}q${i}"><legend>${i+1}. ${item.q} ${withDifficulty?`<span class="pill">${item.level}</span>`:""}</legend>${item.o.map((opt,j)=>`<label class="option"><input type="radio" name="${prefix}${i}" value="${j}">${String.fromCharCode(65+j)}. ${opt}</label>`).join("")}<div class="feedback" id="${prefix}f${i}"></div></fieldset>`).join("");
+}
+function revealGate(){
+ gateData.forEach((item,i)=>{const f=document.getElementById("gatef"+i);f.className="feedback show correct";f.innerHTML=`<b>Answer: ${String.fromCharCode(65+item.a)}. ${item.o[item.a]}</b><br>${item.d}`;});
+}
+function gradeQuiz(){
+ let score=0,unanswered=0;
+ quizData.forEach((item,i)=>{const chosen=document.querySelector(`input[name="quiz${i}"]:checked`);const f=document.getElementById("quizf"+i);f.className="feedback show "+(!chosen?"incorrect":Number(chosen.value)===item.a?"correct":"incorrect");if(!chosen){unanswered++;f.innerHTML=`<b>Unanswered.</b> Correct answer: ${String.fromCharCode(65+item.a)}. ${item.o[item.a]}<br>${item.d}`;}else if(Number(chosen.value)===item.a){score++;f.innerHTML=`<b>Correct.</b> ${item.d}`;}else{f.innerHTML=`<b>Incorrect.</b> Correct answer: ${String.fromCharCode(65+item.a)}. ${item.o[item.a]}<br>${item.d}`;}});
+ document.getElementById("quizResult").textContent=`Score: ${score}/10 (${score*10}%). Unanswered: ${unanswered}.`;
+}
+function resetQuiz(){document.querySelectorAll('#topicQuiz input[type="radio"]').forEach(x=>x.checked=false);document.querySelectorAll('#topicQuiz .feedback').forEach(x=>{x.className='feedback';x.textContent='';});document.getElementById('quizResult').textContent='';}
+renderQuestions(gateData,"gateQuestions","gate",true);
+renderQuestions(quizData,"topicQuiz","quiz",false);
+</script>
+</body>
+</html>
